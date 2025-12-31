@@ -12,8 +12,9 @@ ENV PYTHONUNBUFFERED=1 \
 
 # Install dependencies
 COPY requirements.txt .
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
+RUN apt-get update && apt-get install -y curl && \
+    pip install --upgrade pip && \
+    pip install -r requirements.txt  
 
 # Copy application code
 COPY main.py .
