@@ -385,4 +385,4 @@ See LICENSE file for details.
 Feel free to submit issues and enhancement requests!
 
 ## 📧 Support
-For issues or questions, please contact the development team.
+For issues or questions, please contact me.
