@@ -232,7 +232,7 @@ kill -9 <PID>
 
 ### Spring Service Unreachable
 - Verify Spring service URL is correct
-- Check if Spring service is running
+- Check if the Spring service is running
 - Verify network connectivity between services
 
 ### Import Errors
@@ -248,4 +248,4 @@ See LICENSE file for details.
 Feel free to submit issues and enhancement requests!
 
 ## 📧 Support
-For issues or questions, please contact the development team.
+For issues or questions, please contact me.
