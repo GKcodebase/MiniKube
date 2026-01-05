@@ -1,19 +1,19 @@
-**MiniKube — Local demo repository**
+# **MiniKube — Local demo repository**
 
 - **Description:**: Multi-service demo repository containing a Python FastAPI service, a Java Spring Boot service, Kubernetes manifests, and an embedded Istio distribution for local experimentation.
 - **Contents:**: FastAPI, SpringBoot, Kubernetes manifests, and Istio files for local cluster testing.
 
-**Components**
+## **Components**
 - **FastAPI Service:**: See [FastApiService/main.py](FastApiService/main.py) — simple FastAPI app exposing `/hello`, `/call-java` and `/health` on port `8000`.
 - **Spring Boot Service:**: See [SpringBootService/README.md](SpringBootService/README.md) and [SpringBootService/pom.xml](SpringBootService/pom.xml) — Java service exposing `/hello` and `actuator/health` on port `8080`.
 - **Kubernetes Manifests:**: See [KubernetesService](KubernetesService) — `fastapi-deployment.yaml`, `fastapi-service.yaml`, `spring-deployment.yaml`, `spring-service.yaml` (images referenced: `fastapi-app:1.0`, `spring-app:1.0`).
 - **Istio Distribution:**: Local Istio manifests and `istioctl` live under [istio-1.28.2](istio-1.28.2). Use the bundled `istioctl` to install or manage Istio in the cluster.
 
-**Prerequisites**
+## **Prerequisites**
 - **Local tools:**: `docker`, `kubectl`, `minikube` (or a local k8s cluster), `java` (17+), `mvn`, `python3` (3.8+), `pip`.
 - **Optional:**: Use `istioctl` from [istio-1.28.2/bin/istioctl](istio-1.28.2/bin/istioctl) for Istio installation and management.
 
-**Quickstart — Minikube (recommended for local)**
+## **Quickstart — Minikube (recommended for local)**
 - Start Minikube:
 
 ```bash
@@ -91,7 +91,7 @@ java -jar target/spring-boot-service-1.0.0.jar
 # Open http://localhost:8080/hello
 ```
 
-**Istio notes (local experimentation)**
+## **Istio notes (local experimentation)**
 - The repo includes `istio-1.28.2`. You can use the bundled `istioctl` to install Istio into Minikube:
 
 ```bash
@@ -103,12 +103,12 @@ kubectl label namespace default istio-injection=enabled --overwrite
 
 - After installing Istio, you can apply Kubernetes manifests and observe traffic routing, telemetry, and mTLS behavior. See `istio-1.28.2/README.md` for more details.
 
-**Images and manifest mapping**
+## **Images and manifest mapping**
 - Kubernetes manifests expect these image tags:
   - `fastapi-app:1.0` — built from `FastApiService/Dockerfile` (ensure it exposes port 8000)
   - `spring-app:1.0` — built from `SpringBootService/Dockerfile` (exposes port 8080)
 
-**Service endpoints & behavior**
+## **Service endpoints & behavior**
 - FastAPI endpoints (default port 8000):
   - `/hello` — returns a greeting
   - `/call-java` — calls `spring-service:8080/hello` inside k8s cluster
@@ -117,7 +117,7 @@ kubectl label namespace default istio-injection=enabled --overwrite
   - `/hello` — greeting
   - `/actuator/health` — actuator health
 
-**Troubleshooting & tips**
+## **Troubleshooting & tips**
 - If `kubectl` shows ImagePullBackOff, ensure images are available to the cluster (use `minikube image load` or build inside minikube docker-env).
 - To inspect logs:
 
@@ -128,17 +128,13 @@ kubectl logs deployment/spring -f
 
 - If ports conflict locally, use `kubectl port-forward` to map to different local ports.
 
-**Useful files**
+## **Useful files**
 - [FastApiService/main.py](FastApiService/main.py)
 - [FastApiService/requirements.txt](FastApiService/requirements.txt)
 - [SpringBootService/Dockerfile](SpringBootService/Dockerfile)
 - [SpringBootService/pom.xml](SpringBootService/pom.xml)
 - [KubernetesService](KubernetesService)
 - [istio-1.28.2](istio-1.28.2)
-
-**Next steps (suggested)**
-- Run the Quickstart to verify services in Minikube.
-- Optionally enable Istio and explore telemetry and routing rules.
 
 **License**
 See the repository `LICENSE` file.
